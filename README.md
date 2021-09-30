@@ -42,7 +42,5 @@ Mocks: são objetos que, além de retornarem valores definidos, podemos
 verificar se seus métodos estão sendo executados adequadamente;  
 Dummies: objetos criados apenas para serem passados como parâmetros de
 funções ou satisfazerem dependências;  
-Spies: Objetos que injetam comportamentos em classes para
-permitir asserções;  
-Fakes: Objetos que retornam respostas predefinidas e ainda possibilitam
-asserções sobre seu estado com dados armazenados nas chamadas;
+Spies: Objetos que além de ser possível fornecer respostas predefinidas, podem também ter acerssões através do seu estado com dados que são armazenados em suas chamadas;  
+Fakes: Objetos que possuem alguma funcionalidade limitada, porém são construídos somente para executar os testes, não sendo possível utilizar em produção;
