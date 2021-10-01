@@ -98,7 +98,7 @@ class GatewayTest extends TestCase
         $password = 'valid-password';
         $gateway = new Gateway($httpClient, $logger, $user, $password);
 
-        $name = 'Vinicius Oliveira';
+        $name = 'Alexandre Castro';
         $creditCardNumber = 9999999999999999;
         $validity = new \DateTime('now');
         $value = 100;

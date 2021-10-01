@@ -45,7 +45,7 @@ class OrderServiceTest extends TestCase
     public function shouldNotProcessWhenCustomerIsNotAllowed()
     {
         $this->withOrderService()
-            ->withCustomerNotAllowed();
+            ->withCustomerAllowed(False);
 
         $this->expectException(CustomerNotAllowedException::class);
 
@@ -64,7 +64,7 @@ class OrderServiceTest extends TestCase
     {
         $this->withOrderService()
             ->withCustomerAllowed()
-            ->withNotAvailableItem();
+            ->withAvailableItem(False);
 
         $this->expectException(ItemNotAvailableException::class);
 
@@ -104,13 +104,18 @@ class OrderServiceTest extends TestCase
         $this->withOrderService()
             ->withCustomerAllowed()
             ->withAvailableItem()
-            ->withBadWordsNotFound();
+            ->withBadWordsFound(False);
 
         $paymentTransaction = $this->createMock(PaymentTransaction::class);
 
         $this->paymentService
             ->method('pay')
             ->willReturn($paymentTransaction);
+
+        $this->fidelityProgramService
+             ->expects($this->once())
+             ->method('addPoints');
+    
 
         $this->orderRepository
             ->expects($this->once())
@@ -138,57 +143,32 @@ class OrderServiceTest extends TestCase
         return $this;
     }
 
-    public function withCustomerNotAllowed()
+
+    public function withCustomerAllowed($permitido=True)
     {
         $this->customer
             ->method('isAllowedToOrder')
-            ->willReturn(false);
-
+            ->willReturn($permitido);
         return $this;
     }
 
-    public function withCustomerAllowed()
-    {
-        $this->customer
-            ->method('isAllowedToOrder')
-            ->willReturn(true);
 
-        return $this;
-    }
-
-    public function withNotAvailableItem()
+    public function withAvailableItem($disponivel=True)
     {
         $this->item
             ->method('isAvailable')
-            ->willReturn(false);
+            ->willReturn($disponivel);
 
         return $this;
     }
 
-    public function withAvailableItem()
-    {
-        $this->item
-            ->method('isAvailable')
-            ->willReturn(true);
-
-        return $this;
-    }
-
-    public function withBadWordsFound()
+    public function withBadWordsFound($encontrado=True)
     {
         $this->badWordsValidator
             ->method('hasBadWords')
-            ->willReturn(true);
+            ->willReturn($encontrado);
 
         return $this;
     }
 
-    public function withBadWordsNotFound()
-    {
-        $this->badWordsValidator
-            ->method('hasBadWords')
-            ->willReturn(false);
-
-        return $this;
-    }
 }
