@@ -31,8 +31,5 @@ class OrderRepositoryTest extends TestCase {
         $this->expectException('ArgumentCountError');
         $this->repository->save();
     }
-
-    
 }
-
 ?>
