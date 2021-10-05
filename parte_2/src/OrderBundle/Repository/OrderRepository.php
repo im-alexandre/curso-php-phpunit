@@ -9,6 +9,6 @@ class OrderRepository extends ORM
 {
     public function save(Order $order)
     {
-        return $this->save($order);
+        return $this->persist($order);
     }
 }
