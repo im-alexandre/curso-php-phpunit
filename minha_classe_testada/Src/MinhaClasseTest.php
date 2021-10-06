@@ -26,7 +26,6 @@ class MinhaClasseTest extends TestCase {
         $retorno = $classe->save($value);
 
         $this->assertEquals($retorno, $expected);
-        
     }
 
     public function valueProvider() {
