@@ -22,6 +22,10 @@ use OrderBundle\Exception\CustomerNotAllowedException;
 use OrderBundle\Exception\ItemNotAvailableException;
 use PaymentBundle\Exception\PaymentErrorException;
 
+/**
+ * @codeCoverageIgnore
+ *
+ */
 class OrderController extends Controller
 {
     private $customerRepository;

@@ -25,16 +25,28 @@ class Customer
         $this->isBlocked = $isBlocked;
     }
 
+    /**
+     * @codeCoverageIgnore
+     *
+     */
     public function getID()
     {
         return $this->id;
     }
 
+    /**
+     * @codeCoverageIgnore
+     *
+     */
     public function getName()
     {
         return $this->name;
     }
 
+    /**
+     * @codeCoverageIgnore
+     *
+     */
     public function getPhone()
     {
         return $this->phone;
